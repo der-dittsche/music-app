@@ -7,6 +7,25 @@ body {
   background: rgb(241, 241, 241);
 }
 
+.auth__tab {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.auth__tab-item {
+  cursor: pointer;
+}
+
+.is_active {
+  color: red;
+}
+
+.is_inactive {
+  display: none;
+}
+
 .form__card {
   background: white;
   padding: 2rem;
@@ -15,6 +34,11 @@ body {
 .form__card-element {
   display: flex;
   padding-block: 0.5rem;
+}
+.form__card-input {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 }
 
 .form__card-element label {
