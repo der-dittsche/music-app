@@ -1,3 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background: rgb(170, 170, 170);
+  background: rgb(241, 241, 241);
+}
+
+.form__card {
+  background: white;
+  padding: 2rem;
+}
+
+.form__card-element {
+  display: flex;
+  padding-block: 0.5rem;
+}
+
+.form__card-element label {
+  flex-basis: 20%;
+}
+
+.form__card-element input[type="text"],
+.form__card-element input[type="email"],
+.form__card-element input[type="password"],
+.form__card-element input[type="date"] {
+  flex-basis: 80%;
 }
