@@ -104,9 +104,7 @@ export const useUserStore = defineStore("storeUser", {
     logoutUser() {
       signOut(auth)
         .then(() => {
-          if (router.meta.requiresAuth) {
-            router.push({ name: "auth" });
-          }
+          router.push({ name: "auth" });
         })
         .catch((error) => {
           console.log(error);
