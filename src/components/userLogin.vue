@@ -65,7 +65,7 @@ export default {
       if (!this.credentials.login_email || !this.credentials.login_password) {
         console.log("wrong entry");
       } else {
-        this.storeUser.login(this.credentials);
+        this.storeUser.loginUser(this.credentials);
       }
     },
   },

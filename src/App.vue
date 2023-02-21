@@ -4,6 +4,9 @@
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
       <RouterLink to="/auth">Auth</RouterLink>
+      <button @click="storeUser.logoutUser" v-if="storeUser.user.id">
+        LogOut
+      </button>
     </nav>
   </header>
 
@@ -24,6 +27,9 @@ export default {
     return {
       storeUser,
     };
+  },
+  mounted() {
+    this.storeUser.initUser();
   },
 };
 </script>
