@@ -35,7 +35,9 @@
           </div></vee-field
         >
       </div>
-      <button type="submit">Login</button>
+      <div class="form__card-element">
+        <button type="submit">Login</button>
+      </div>
     </vee-form>
   </div>
 </template>

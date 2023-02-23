@@ -56,6 +56,24 @@
         </vee-field>
       </div>
       <div class="form__card-element">
+        <label for="auth_username">Username:</label>
+        <vee-field
+          name="auth_username"
+          :bails="false"
+          v-slot="{ field, errors }"
+          ><div class="form__card-input">
+            <input
+              v-model="credentials.auth_username"
+              type="text"
+              id="auth_username"
+              autocomplete="off"
+              v-bind="field"
+            />
+          </div>
+          <div v-for="error in errors" :key="error">{{ error }}</div>
+        </vee-field>
+      </div>
+      <div class="form__card-element">
         <label for="auth_email">Email</label>
         <vee-field name="auth_email" :bails="false" v-slot="{ field, errors }">
           <div class="form__card-input">
@@ -139,6 +157,7 @@ export default {
       auth_firstname: "",
       auth_lastname: "",
       auth_birthday: "",
+      auth_username: "",
       auth_tos: false,
     });
     const storeUser = useUserStore();
@@ -152,6 +171,7 @@ export default {
         auth_password_confirmed: "pw_missmatch:@auth_password",
         auth_firstname: "required|min:3|max:100|alphaSpaces",
         auth_lastname: "required|min:3|max:100|alphaSpaces",
+        auth_username: "required|min:6|max:100|alphaSpaces",
         auth_birthday: "required",
         auth_tos: "tos",
       },
