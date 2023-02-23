@@ -1,27 +1,29 @@
 <template>
   <div>
     <h1>This is an Authentication Page</h1>
-    <div class="auth__tab">
-      <div
-        class="auth__tab-item"
-        :class="{ is_active: !register }"
-        @click.prevent="register = false"
-      >
-        <h2>Login</h2>
+    <div class="container">
+      <div class="auth__tab">
+        <div
+          class="auth__tab-item"
+          :class="{ is_active: !register }"
+          @click.prevent="register = false"
+        >
+          <h2>Login</h2>
+        </div>
+        <div
+          class="auth__tab-item"
+          :class="{ is_active: register }"
+          @click.prevent="register = true"
+        >
+          <h2>Register</h2>
+        </div>
       </div>
-      <div
-        class="auth__tab-item"
-        :class="{ is_active: register }"
-        @click.prevent="register = true"
-      >
-        <h2>Register</h2>
+      <div v-if="!register">
+        <LoginUser />
       </div>
-    </div>
-    <div class="form__card" v-if="!register">
-      <LoginUser />
-    </div>
-    <div class="form__card" v-if="register">
-      <RegisterUser />
+      <div v-if="register">
+        <RegisterUser />
+      </div>
     </div>
   </div>
 </template>
