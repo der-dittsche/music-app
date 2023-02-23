@@ -1,26 +1,26 @@
 <template>
   <header>
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
-      <RouterLink to="/auth">Auth</RouterLink>
-      <button @click="storeUser.logoutUser" v-if="storeUser.user.id">
-        LogOut
-      </button>
-    </nav>
+    <navBar />
   </header>
-
-  <RouterView />
+  <main>
+    <RouterView />
+  </main>
+  <div class="player">
+    <songControll v-if="storeUser.user.id" />
+  </div>
 </template>
 
 <script>
-import { RouterLink, RouterView } from "vue-router";
-import { useUserStore } from "./stores/users";
+import { RouterView } from "vue-router";
+import { useUserStore } from "@/stores/users";
+import navBar from "@/components/navBar.vue";
+import songControll from "@/components/songControll.vue";
 
 export default {
   components: {
-    RouterLink,
     RouterView,
+    navBar,
+    songControll,
   },
   data() {
     const storeUser = useUserStore();
@@ -33,5 +33,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

@@ -25,8 +25,6 @@ export const useUserStore = defineStore("storeUser", {
   state: () => {
     return {
       users: [],
-      songs: [],
-      comments: [],
       user: {},
       usersLoaded: false,
     };
@@ -61,6 +59,7 @@ export const useUserStore = defineStore("storeUser", {
             username: doc.data().username,
             birthday: doc.data().birthday,
             tos: doc.data().tos,
+            userid: doc.data().userid,
           };
           users.push(user);
         });
@@ -114,10 +113,12 @@ export const useUserStore = defineStore("storeUser", {
       usersCollectionRef = collection(db, "users", this.user.id, "details");
       await addDoc(usersCollectionRef, {
         email: credentials.auth_email,
+        username: credentials.auth_username,
         firstname: credentials.auth_firstname,
         lastname: credentials.auth_lastname,
         birthday: credentials.auth_birthday,
         tos: credentials.auth_tos,
+        userid: this.user.id,
       });
     },
     async updateUser(infos) {

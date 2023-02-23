@@ -25,6 +25,17 @@ const routes = [
     },
   },
   {
+    path: "/manage",
+    name: "manage",
+    component: () => import("../views/ManageSongsView.vue"),
+    beforeEnter: (to, from, next) => {
+      next();
+    },
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: "/auth",
     name: "auth",
     component: () => import("../views/AuthView.vue"),
