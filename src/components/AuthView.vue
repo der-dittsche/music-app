@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h1>This is an Authentication Page</h1>
-    <div class="container">
+  <div class="modal" :class="hiddenClass">
+    <div class="modal__container">
+      <div class="auth__close" @click="isOpen = false">X</div>
       <div class="auth__tab">
         <div
           class="auth__tab-item"
@@ -32,6 +32,8 @@
 import { ref } from "vue";
 import LoginUser from "@/components/userLogin.vue";
 import RegisterUser from "@/components/userRegistration.vue";
+import { mapState, mapWritableState } from "pinia";
+import useModalStore from "@/stores/modal";
 
 export default {
   data() {
@@ -45,5 +47,36 @@ export default {
     LoginUser,
     RegisterUser,
   },
+  computed: {
+    ...mapState(useModalStore, ["hiddenClass"]),
+    ...mapWritableState(useModalStore, ["isOpen"]),
+  },
 };
 </script>
+<style scoped>
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+  padding: 2rem;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.modal__container {
+  position: relative;
+  width: 50vw;
+  min-height: 50vh;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+.auth__close {
+  position: absolute;
+  right: 2rem;
+  cursor: pointer;
+}
+</style>

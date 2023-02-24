@@ -18,7 +18,9 @@ export const useSongsStore = defineStore("storeSongs", {
   state: () => {
     return {
       songs: [],
+      comments: [],
       songsLoaded: false,
+      commentsLoaded: false,
     };
   },
   actions: {
@@ -46,7 +48,6 @@ export const useSongsStore = defineStore("storeSongs", {
       });
     },
     async addSong(song) {
-      songsCollectionRef = collection(db, "songs");
       await addDoc(songsCollectionRef, {
         userid: song.userid,
         comment_count: song.comment_count,
@@ -59,7 +60,6 @@ export const useSongsStore = defineStore("storeSongs", {
       });
     },
     async updateSong(song) {
-      songsCollectionRef = collection(db, "songs");
       await updateDoc(doc(songsCollectionRef, song.id), {
         display_name: song.display_name,
         original_name: song.original_name,

@@ -1,6 +1,11 @@
 <template>
   <div>
-    <vee-form action="submit" @submit="login" :validation-schema="schema_login">
+    <vee-form
+      action="submit"
+      @submit="login"
+      :validation-schema="schema_login"
+      class="auth__form"
+    >
       <div class="form__card-element">
         <label for="login_email">Email</label>
         <vee-field name="login_email" :bails="false" v-slot="{ field, errors }">
@@ -36,7 +41,7 @@
         >
       </div>
       <div class="form__card-element">
-        <button type="submit">Login</button>
+        <button type="submit" @click="isOpen = false">Login</button>
       </div>
     </vee-form>
   </div>
@@ -44,6 +49,8 @@
 <script>
 import { reactive } from "vue";
 import { useUserStore } from "@/stores/users.js";
+import { mapWritableState } from "pinia";
+import useModalStore from "@/stores/modal";
 
 export default {
   data() {
@@ -70,6 +77,9 @@ export default {
         this.storeUser.loginUser(this.credentials);
       }
     },
+  },
+  computed: {
+    ...mapWritableState(useModalStore, ["isOpen"]),
   },
 };
 </script>

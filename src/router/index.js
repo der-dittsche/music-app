@@ -5,7 +5,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: () => import("../views/HomeView.vue"),
+    component: () => import("@/views/HomeView.vue"),
     beforeEnter: (to, from, next) => {
       next();
     },
@@ -16,7 +16,7 @@ const routes = [
   {
     path: "/about",
     name: "about",
-    component: () => import("../views/AboutView.vue"),
+    component: () => import("@/views/AboutView.vue"),
     beforeEnter: (to, from, next) => {
       next();
     },
@@ -27,7 +27,7 @@ const routes = [
   {
     path: "/manage",
     name: "manage",
-    component: () => import("../views/ManageSongsView.vue"),
+    component: () => import("@/views/ManageSongsView.vue"),
     beforeEnter: (to, from, next) => {
       next();
     },
@@ -38,13 +38,17 @@ const routes = [
   {
     path: "/auth",
     name: "auth",
-    component: () => import("../views/AuthView.vue"),
+    component: () => import("@/components/AuthView.vue"),
     beforeEnter: (to, from, next) => {
       next();
     },
     meta: {
       requiresAuth: false,
     },
+  },
+  {
+    path: "/:catchAll(.*)*",
+    redirect: { name: "home" },
   },
 ];
 

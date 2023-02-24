@@ -13,9 +13,13 @@
       </li>
     </ul>
     <div class="nav__auth">
-      <RouterLink to="/auth"
-        ><div class="nav-item" v-if="!storeUser.user.id">Auth</div></RouterLink
+      <div
+        class="nav-item"
+        v-if="!storeUser.user.id"
+        @click.prevent="toggleAuthModal"
       >
+        Login
+      </div>
       <div
         class="nav-item"
         @click="storeUser.logoutUser"
@@ -24,18 +28,34 @@
         LogOut
       </div>
     </div>
+    <AuthView></AuthView>
   </nav>
 </template>
 
 <script>
 import { useUserStore } from "@/stores/users";
+import AuthView from "@/components/AuthView.vue";
+import { mapStores } from "pinia";
+import useModalStore from "@/stores/modal";
 
 export default {
   data() {
     const storeUser = useUserStore();
+
     return {
       storeUser,
     };
+  },
+  components: {
+    AuthView,
+  },
+  computed: {
+    ...mapStores(useModalStore),
+  },
+  methods: {
+    toggleAuthModal() {
+      this.modalStore.isOpen = !this.modalStore.isOpen;
+    },
   },
 };
 </script>

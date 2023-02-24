@@ -1,6 +1,11 @@
 <template>
   <div>
-    <vee-form action="submit" @submit="auth" :validation-schema="schema_auth">
+    <vee-form
+      action="submit"
+      @submit="auth"
+      :validation-schema="schema_auth"
+      class="auth__form"
+    >
       <div class="form__card-element">
         <label for="auth_firstname">Firstname:</label>
         <vee-field

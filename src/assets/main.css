@@ -31,6 +31,10 @@ a {
   background: white;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* Navbar */
 
 nav {
@@ -117,6 +121,7 @@ nav {
   width: 100%;
   justify-content: center;
   gap: 2rem;
+  padding-bottom: 2rem;
 }
 
 .auth__tab-item {
