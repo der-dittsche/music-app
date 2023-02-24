@@ -112,6 +112,7 @@ nav {
 .songlist__items-comments {
   flex: 1;
   text-align: right;
+  align-self: center;
 }
 
 /* Auth Page */
@@ -217,6 +218,59 @@ nav {
 .progress {
   background-color: rgb(235, 235, 235);
   height: 100%;
+}
+
+.uploads__you-songs {
+  position: relative;
+  width: 100%;
+  padding-block: 1rem;
+}
+
+.uploads__you-songs::before {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  bottom: 0.5rem;
+  background-color: #888;
+}
+
+.uploads__items {
+  position: relative;
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+.uploads__items::after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  width: 100%;
+  bottom: 0.5rem;
+  background-color: #999;
+}
+
+.uploads__items:last-child::after {
+  height: 0;
+}
+
+.uploads__items-info {
+  flex: 7;
+}
+
+.uploads__items-comments {
+  flex: 1;
+  text-align: right;
+  align-self: center;
+}
+
+.uploads__items-comments i {
+  cursor: pointer;
+}
+
+.uploads__items-content {
+  display: flex;
+  width: 100%;
 }
 
 /* Player */

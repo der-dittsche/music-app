@@ -9,7 +9,7 @@
       :song="song"
     >
       <div class="songlist__items-info">
-        <h3>{{ song.original_name }}</h3>
+        <h3>{{ song.modified_name }}</h3>
         <p>Artist: {{ song.artist }}</p>
         <p>Genre: {{ song.genre }}</p>
         <p>Uploaded by: {{ song.display_name }}</p>
