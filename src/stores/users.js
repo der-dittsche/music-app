@@ -35,6 +35,7 @@ export const useUserStore = defineStore("storeUser", {
         if (user) {
           this.user.id = user.uid;
           this.user.email = user.email;
+          this.user.username = "";
           usersCollectionRef = collection(db, "users", this.user.id, "details");
           usersCollectionQuerry = query(usersCollectionRef);
           this.getUsers();
@@ -51,7 +52,7 @@ export const useUserStore = defineStore("storeUser", {
       getUsersSnapshot = onSnapshot(usersCollectionQuerry, (querySnapshot) => {
         const users = [];
         querySnapshot.forEach((doc) => {
-          const user = {
+          const userdetails = {
             id: doc.id,
             firstname: doc.data().firstname,
             lastname: doc.data().lastname,
@@ -61,9 +62,9 @@ export const useUserStore = defineStore("storeUser", {
             tos: doc.data().tos,
             userid: doc.data().userid,
           };
-          users.push(user);
+          users.push(userdetails);
+          this.user.username = userdetails.username;
         });
-
         this.users = users;
         this.usersLoaded = true;
       });

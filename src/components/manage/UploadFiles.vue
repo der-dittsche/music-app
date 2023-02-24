@@ -91,7 +91,7 @@ export default {
           async () => {
             const song = {
               userid: this.storeUser.user.id,
-              display_name: this.storeUser.user.email,
+              display_name: this.storeUser.user.username,
               original_name: task.snapshot.ref.name,
               modified_name: task.snapshot.ref.name,
               artist: "",
