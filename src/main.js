@@ -6,6 +6,7 @@ import router from "./router";
 import VeeValidatePlugin from "@/includes/validations";
 
 import "./assets/main.css";
+import "boxicons/css/boxicons.min.css";
 
 const app = createApp(App);
 
