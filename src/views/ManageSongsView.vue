@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import ListUploadsVue from "@/components/manage/ListUploads.vue";
-import UploadFiles from "@/components/manage/UploadFiles.vue";
+import ListUploadsVue from "@/components/manageview/listUploads.vue";
+import UploadFiles from "@/components/manageview/uploadFiles.vue";
 import { useUserStore } from "@/stores/users";
 import { useSongsStore } from "@/stores/songs";
 export default {
@@ -31,6 +31,9 @@ export default {
       storeUser,
       editSong: false,
     };
+  },
+  mounted() {
+    this.storeMusic.getSongs();
   },
   computed: {
     filter() {

@@ -8,10 +8,12 @@ import {
   updateDoc,
   deleteDoc,
   query,
+  serverTimestamp,
+  orderBy,
 } from "firebase/firestore";
 
 let songsCollectionRef = collection(db, "songs");
-let songsCollectionQuerry = query(songsCollectionRef);
+let songsCollectionQuerry = query(songsCollectionRef, orderBy("timestamp"));
 let getSongsSnapshot = null;
 
 export const useSongsStore = defineStore("storeSongs", {
@@ -57,6 +59,7 @@ export const useSongsStore = defineStore("storeSongs", {
         artist: song.artist,
         genre: song.genre,
         url: song.url,
+        timestamp: serverTimestamp(),
       });
     },
     async updateSong(song) {

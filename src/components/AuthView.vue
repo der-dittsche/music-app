@@ -30,8 +30,8 @@
 
 <script>
 import { ref } from "vue";
-import LoginUser from "@/components/userLogin.vue";
-import RegisterUser from "@/components/userRegistration.vue";
+import LoginUser from "@/components/authview/userLogin.vue";
+import RegisterUser from "@/components/authview/userRegistration.vue";
 import { mapState, mapWritableState } from "pinia";
 import useModalStore from "@/stores/modal";
 
