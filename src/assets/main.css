@@ -115,6 +115,36 @@ nav {
   align-self: center;
 }
 
+/* Song Page */
+
+.play__content {
+  display: flex;
+  gap: 2rem;
+}
+.play__content h1 {
+  padding-bottom: 0;
+}
+
+.play__content-button {
+  background-color: white;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.play__content-button i {
+  font-size: 6rem;
+  position: absolute;
+  inset: -0.5rem;
+}
+
+.play__content-button i:active {
+  color: #bfbfbf;
+}
+
 /* Auth Page */
 
 .auth__tab {
@@ -299,6 +329,7 @@ nav {
   flex: 100%;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .time-bar-line {

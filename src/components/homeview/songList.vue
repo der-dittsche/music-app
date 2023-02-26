@@ -1,7 +1,11 @@
 <template>
   <div class="songlist__item">
     <div class="songlist__items-info">
-      <h3>{{ song.modified_name }}</h3>
+      <h3>
+        <RouterLink :to="{ name: 'song', params: { id: song.id } }">{{
+          song.modified_name
+        }}</RouterLink>
+      </h3>
       <p>Artist: {{ song.artist }}</p>
       <p>Genre: {{ song.genre }}</p>
       <p>Uploaded by: {{ song.display_name }}</p>
@@ -11,7 +15,11 @@
 </template>
 
 <script>
+import { RouterLink } from "vue-router";
 export default {
+  components: {
+    RouterLink,
+  },
   props: {
     song: {
       type: Object,

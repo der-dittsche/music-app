@@ -8,7 +8,6 @@ import {
   updateDoc,
   deleteDoc,
   query,
-  serverTimestamp,
   orderBy,
 } from "firebase/firestore";
 
@@ -20,9 +19,7 @@ export const useSongsStore = defineStore("storeSongs", {
   state: () => {
     return {
       songs: [],
-      comments: [],
       songsLoaded: false,
-      commentsLoaded: false,
     };
   },
   actions: {
@@ -41,6 +38,7 @@ export const useSongsStore = defineStore("storeSongs", {
             genre: doc.data().genre,
             url: doc.data().url,
             userid: doc.data().userid,
+            timestamp: doc.data().timestamp,
           };
           songs.push(song);
         });
@@ -50,6 +48,7 @@ export const useSongsStore = defineStore("storeSongs", {
       });
     },
     async addSong(song) {
+      const uploadtime = new Date().toISOString();
       await addDoc(songsCollectionRef, {
         userid: song.userid,
         comment_count: song.comment_count,
@@ -59,7 +58,7 @@ export const useSongsStore = defineStore("storeSongs", {
         artist: song.artist,
         genre: song.genre,
         url: song.url,
-        timestamp: serverTimestamp(),
+        timestamp: uploadtime,
       });
     },
     async updateSong(song) {

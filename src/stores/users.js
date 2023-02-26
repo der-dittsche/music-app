@@ -104,7 +104,7 @@ export const useUserStore = defineStore("storeUser", {
     logoutUser() {
       signOut(auth)
         .then(() => {
-          router.push({ name: "auth" });
+          router.push({ name: "home" });
         })
         .catch((error) => {
           console.log(error);

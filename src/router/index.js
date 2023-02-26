@@ -14,6 +14,17 @@ const routes = [
     },
   },
   {
+    path: "/song/:id",
+    name: "song",
+    component: () => import("@/views/SongView.vue"),
+    beforeEnter: (to, from, next) => {
+      next();
+    },
+    meta: {
+      requiresAuth: false,
+    },
+  },
+  {
     path: "/about",
     name: "about",
     component: () => import("@/views/AboutView.vue"),
@@ -53,7 +64,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
 });
 

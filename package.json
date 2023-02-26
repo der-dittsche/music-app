@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "devfb": "firebase emulators:start --import=./saved-data --export-on-exit",
+    "fbexport": "firebase emulators:export ./firebase-exports",
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",
@@ -16,6 +17,7 @@
     "@vee-validate/rules": "^4.7.4",
     "boxicons": "^2.1.4",
     "firebase": "^9.17.1",
+    "howler": "^2.2.3",
     "pinia": "^2.0.28",
     "vee-validate": "^4.7.4",
     "vue": "^3.2.45",
