@@ -1,16 +1,18 @@
 <template>
-  <h1>This is the Manage Page</h1>
-  <div class="container manage">
-    <UploadFiles />
-    <div class="manage__music">
-      <div class="uploads__you-songs">
-        <h2>Your Songs</h2>
-      </div>
-      <div class="uploads__items">
-        <ListUploadsVue v-for="song in filter" :key="song.id" :song="song" />
+  <main>
+    <h1>This is the Manage Page</h1>
+    <div class="container manage">
+      <UploadFiles />
+      <div class="manage__music">
+        <div class="uploads__you-songs">
+          <h2>Your Songs</h2>
+        </div>
+        <div class="uploads__items">
+          <ListUploadsVue v-for="song in filter" :key="song.id" :song="song" />
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

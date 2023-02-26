@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "devfb": "firebase emulators:start --import=./saved-data --export-on-exit",
-    "fbexport": "firebase emulators:export ./firebase-exports",
+    "fbexport": "firebase emulators:export ./saved-data",
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",

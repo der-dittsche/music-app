@@ -111,6 +111,7 @@ nav {
 
 .songlist__items-comments {
   flex: 1;
+  cursor: pointer;
   text-align: right;
   align-self: center;
 }

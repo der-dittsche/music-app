@@ -1,16 +1,24 @@
 <template>
   <div class="songlist__item">
     <div class="songlist__items-info">
-      <h3>
-        <RouterLink :to="{ name: 'song', params: { id: song.id } }">{{
-          song.modified_name
-        }}</RouterLink>
-      </h3>
-      <p>Artist: {{ song.artist }}</p>
-      <p>Genre: {{ song.genre }}</p>
-      <p>Uploaded by: {{ song.display_name }}</p>
+      <RouterLink :to="{ name: 'song', params: { id: song.id } }">
+        <h3>
+          {{ song.modified_name }}
+        </h3>
+        <p>Artist: {{ song.artist }}</p>
+        <p>Genre: {{ song.genre }}</p>
+        <p>Uploaded by: {{ song.display_name }}</p>
+      </RouterLink>
     </div>
-    <div class="songlist__items-comments">Comment</div>
+
+    <div class="songlist__items-comments">
+      <RouterLink
+        custom
+        :to="{ name: 'song', params: { id: song.id }, hash: '#comments' }"
+        v-slot="{ navigate }"
+        ><p @click="navigate">{{ song.comment_count }} Comment</p></RouterLink
+      >
+    </div>
   </div>
 </template>
 

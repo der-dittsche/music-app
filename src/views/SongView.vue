@@ -1,54 +1,60 @@
 <template>
-  <div class="play__content">
-    <div class="play__content-button" @click.prevent="newSong(song)">
-      <i class="bx bx-play-circle"></i>
-    </div>
-    <div class="play__content-info">
-      <h1>{{ song.modified_name }}</h1>
-      <p>{{ song.genre }}</p>
-    </div>
-  </div>
-
-  <div class="container">
-    <h2 class="songlist__title">Comments ({{ song.comment_count }})</h2>
-    <div
-      class="songlist__comment_alert"
-      v-if="comment_show_alert"
-      :class="comment_alert_variant"
-    >
-      {{ comment_alert_message }}
-    </div>
-    <vee-form
-      @submit="addComment"
-      :validation-schema="schema_comment"
-      v-if="storeUser.user.id"
-    >
-      <vee-field
-        as="textarea"
-        name="comment"
-        placeholder="Add a comment here..."
-        autocomplete="off"
-      ></vee-field>
-      <ErrorMessage name="comment" />
-
-      <button type="submit" :disabled="comment_in_submission">Submit</button>
-    </vee-form>
-    <select v-model="sort">
-      <option value="1">Latest</option>
-      <option value="2">Oldest</option>
-    </select>
-    <div
-      class="songlist__item"
-      v-for="comment in sortedComments"
-      :key="comment.id"
-    >
-      <div class="songlist__items-info">
-        <h3>{{ comment.username }}</h3>
-        <p>{{ comment.timestamp }}</p>
+  <main>
+    <div class="play__content">
+      <div class="play__content-button" @click.prevent="newSong(song)">
+        <i class="bx bx-play-circle"></i>
       </div>
-      <div class="songlist__items-comments">{{ comment.comment }}</div>
+      <div class="play__content-info">
+        <h1>{{ song.modified_name }}</h1>
+        <p>{{ song.genre }}</p>
+      </div>
     </div>
-  </div>
+    <section id="comments">
+      <div class="container">
+        <h2 class="songlist__title">Comments ({{ song.comment_count }})</h2>
+        <div
+          class="songlist__comment_alert"
+          v-if="comment_show_alert"
+          :class="comment_alert_variant"
+        >
+          {{ comment_alert_message }}
+        </div>
+
+        <vee-form
+          @submit="addComment"
+          :validation-schema="schema_comment"
+          v-if="storeUser.user.id"
+        >
+          <vee-field
+            as="textarea"
+            name="comment"
+            placeholder="Add a comment here..."
+            autocomplete="off"
+          ></vee-field>
+          <ErrorMessage name="comment" />
+
+          <button type="submit" :disabled="comment_in_submission">
+            Submit
+          </button>
+        </vee-form>
+        <select v-model="sort">
+          <option value="1">Latest</option>
+          <option value="2">Oldest</option>
+        </select>
+        <div
+          class="songlist__item"
+          v-for="comment in sortedComments"
+          :key="comment.id"
+        >
+          <div class="songlist__items-info">
+            <h3>{{ comment.username }}</h3>
+            <p>{{ comment.timestamp }}</p>
+          </div>
+          <div class="songlist__items-comments">{{ comment.comment }}</div>
+        </div>
+      </div>
+    </section>
+  </main>
 </template>
 <script>
 import { useSongsStore } from "@/stores/songs";

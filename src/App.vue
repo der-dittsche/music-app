@@ -3,7 +3,11 @@
     <navBar />
   </header>
   <main>
-    <RouterView />
+    <RouterView v-slot="{ Component }">
+      <transition name="fade" mode="out-in">
+        <component :is="Component"></component
+      ></transition>
+    </RouterView>
   </main>
   <div class="player">
     <songControll v-if="storeUser.user.id" />
@@ -33,3 +37,13 @@ export default {
   },
 };
 </script>
+<style>
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+</style>
