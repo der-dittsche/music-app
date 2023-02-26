@@ -5,7 +5,7 @@
         <h3>
           {{ song.modified_name }}
         </h3>
-        <p>Artist: {{ song.artist }}</p>
+        <p class="song_artist">Artist: {{ song.artist }}</p>
         <p>Genre: {{ song.genre }}</p>
         <p>Uploaded by: {{ song.display_name }}</p>
       </RouterLink>

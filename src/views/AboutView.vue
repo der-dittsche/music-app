@@ -1,6 +1,7 @@
 <template>
   <main>
     <h1>This is an about page</h1>
+    <p>about me</p>
     <div class="container">
       <div v-for="details in storeUser.users" :key="details.id">
         <div class="userdetails">
@@ -27,10 +28,10 @@
     </div>
   </main>
 </template>
-
 <script>
 import { useUserStore } from "@/stores/users";
 export default {
+  name: "AboutView",
   data() {
     const storeUser = useUserStore();
 
