@@ -25,13 +25,26 @@
           </div>
         </div>
       </div>
+      <button @click="toggleUserDetailsModal">Change Details</button>
     </div>
+    <ChangeUserDetails
+      v-for="details in storeUser.users"
+      :key="details.id"
+      :user="details"
+    />
   </main>
 </template>
 <script>
 import { useUserStore } from "@/stores/users";
+import ChangeUserDetails from "@/components/ChangeUserDetails.vue";
+import { mapStores } from "pinia";
+import useModalStore from "@/stores/modal";
+
 export default {
   name: "AboutView",
+  components: {
+    ChangeUserDetails,
+  },
   data() {
     const storeUser = useUserStore();
 
@@ -39,7 +52,14 @@ export default {
       storeUser,
     };
   },
-  methods: {},
+  computed: {
+    ...mapStores(useModalStore),
+  },
+  methods: {
+    toggleUserDetailsModal() {
+      this.modalStore.isOpenUser = !this.modalStore.isOpenUser;
+    },
+  },
 };
 </script>
 <style></style>

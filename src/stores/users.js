@@ -129,8 +129,9 @@ export const useUserStore = defineStore("storeUser", {
         firstname: infos.firstname,
         lastname: infos.lastname,
         username: infos.username,
-        country: infos.country,
-        city: infos.city,
+        birthday: infos.birthday,
+        tos: infos.birthday,
+        userid: infos.id,
       });
     },
     clearUsers() {
