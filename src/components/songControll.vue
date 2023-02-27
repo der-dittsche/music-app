@@ -11,6 +11,17 @@
         :class="{ 'bx-play-circle': !playing, 'bx-pause': playing }"
       ></i>
     </div>
+    <div class="vol-controll" @click.prevent="isOpenVol = !isOpenVol">Vol</div>
+    <div :class="hiddenClassVol">
+      <div class="vol-controll-bar" @click.prevent="updateVolume">
+        <div class="vol-controll-bar-line">
+          <div
+            class="vol-controll-bar-line-progress"
+            :style="{ height: volumeHeight }"
+          ></div>
+        </div>
+      </div>
+    </div>
     <div class="time-current">{{ seek }}</div>
     <div class="time-bar" @click.prevent="updateSeek">
       <div class="time-bar-line">
@@ -24,20 +35,29 @@
   </div>
 </template>
 <script>
-import { mapActions, mapState } from "pinia";
+import { mapActions, mapState, mapWritableState } from "pinia";
 import { usePlayerStore } from "@/stores/player";
+import useModalStore from "@/stores/modal";
 
 export default {
-  methods: {
-    ...mapActions(usePlayerStore, ["toggleAudio", "updateSeek"]),
-  },
   computed: {
+    ...mapState(useModalStore, ["hiddenClassVol"]),
+    ...mapWritableState(useModalStore, ["isOpenVol"]),
     ...mapState(usePlayerStore, [
       "playing",
       "duration",
       "seek",
       "playerProgress",
       "current_song",
+      "volume",
+      "volumeHeight",
+    ]),
+  },
+  methods: {
+    ...mapActions(usePlayerStore, [
+      "toggleAudio",
+      "updateSeek",
+      "updateVolume",
     ]),
   },
 };

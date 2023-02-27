@@ -1,15 +1,16 @@
 import { defineStore } from "pinia";
-import { Howl } from "howler";
+import { Howl, Howler } from "howler";
 import helper from "@/includes/helper";
 
 export const usePlayerStore = defineStore("player", {
   state: () => ({
     current_song: {},
     sound: {},
-
+    volume: "0.1",
     seek: "00:00",
     duration: "00:00",
     playerProgress: "0%",
+    volumeHeight: "0%",
   }),
   actions: {
     async newSong(song) {
@@ -22,7 +23,7 @@ export const usePlayerStore = defineStore("player", {
       this.sound = new Howl({
         src: [song.url],
         html5: true,
-        volume: 0.1,
+        volume: this.volume,
       });
 
       this.sound.play();
@@ -54,13 +55,24 @@ export const usePlayerStore = defineStore("player", {
         requestAnimationFrame(this.progress);
       }
     },
+    updateVolume(event) {
+      const { y, height } = event.currentTarget.getBoundingClientRect();
+      const clickY = event.clientY - y;
+      const percentageY = clickY / height;
+      const volume = 1 - percentageY;
+      this.volume = volume;
+      this.volumeHeight = `${this.volume * 100}%`;
+      this.setVol(volume);
+    },
+    setVol(val) {
+      Howler.volume(val);
+    },
     updateSeek(event) {
       if (!this.sound.playing) {
         return;
       }
 
       const { x, width } = event.currentTarget.getBoundingClientRect();
-      // Document = 2000, Timeline = 1000, clientX = 1000, Distance = 500
       const clickX = event.clientX - x;
       const percentage = clickX / width;
       const seconds = this.sound.duration() * percentage;
