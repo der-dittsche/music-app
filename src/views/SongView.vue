@@ -105,7 +105,6 @@ export default {
   mounted() {
     this.getSongDetail(this.$route.params.id);
     this.getComments();
-
     const { sort } = this.$route.query;
 
     this.sort = sort === "1" || sort === "2" ? sort : "1";
@@ -113,6 +112,7 @@ export default {
   methods: {
     ...mapActions(usePlayerStore, ["newSong"]),
     async getSongDetail(idToShow) {
+      console.log("Hallo Song");
       const songsCollectionRef = doc(db, "songs", idToShow);
       const getSongsSnapshot = await getDoc(songsCollectionRef);
       if (getSongsSnapshot.exists()) {
